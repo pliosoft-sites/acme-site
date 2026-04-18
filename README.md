@@ -1,9 +1,28 @@
-# Acme Coffee Roasters — fixture customer site
+# acme-site
 
-A generic, minimal Astro site that stands in for a real customer repo so the
-build pipeline has something to build. **Not Pliosoft-branded** — each customer
-carries their own brand. This one is intentionally generic small-business.
+Website for **Acme Coffee Roasters** — a small-batch coffee roastery on Maple
+Street in Springfield. Two roasters, one drum, Saturday mornings only.
 
-In production each customer would be its own GitHub repo in the `pliosoft` org.
-For local dev, the seeded D1 row points `repo_url` at this directory via a
-`file://` URL.
+## Local dev
+
+```sh
+npm install
+npm run dev
+```
+
+Astro dev server boots on `http://localhost:4321`.
+
+## Structure
+
+- `src/pages/` — one `.astro` file per route.
+- `src/layouts/Base.astro` — site chrome (masthead, nav, footer).
+- `public/` — static assets served as-is.
+
+## Editing
+
+Prose lives directly in the `.astro` files — open the page, edit, save. No CMS.
+If you want a new page, add `src/pages/<name>.astro` and link it from the nav.
+
+---
+
+Hosted on [pliosoft](https://pliosoft.com).

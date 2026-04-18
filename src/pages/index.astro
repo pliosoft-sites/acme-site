@@ -1,14 +1,38 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="Acme Coffee Roasters">
+<Base title="Acme Coffee Roasters — small-batch coffee, Springfield">
+  <p class="eyebrow">Roasted Tuesdays · Picked up Saturdays</p>
   <h1>Coffee, roasted Tuesdays.</h1>
-  <p>We're a small roastery on Maple Street. Single-origin beans, two house blends, and a stubborn refusal to roast anything past medium.</p>
-  <h2>This week</h2>
-  <ul>
-    <li><strong>Ethiopia Yirgacheffe</strong> — bright, floral, lemon zest finish.</li>
-    <li><strong>Colombia Huila</strong> — caramel, milk chocolate, gentle body.</li>
-    <li><strong>House blend "Maple"</strong> — cocoa-forward, easy drinker.</li>
+  <p class="lede">
+    We're a two-person roastery on Maple Street. Single-origin beans, two house
+    blends, and a stubborn refusal to roast anything past medium.
+  </p>
+
+  <h2>On the bar this week</h2>
+  <ul class="card-list">
+    <li>
+      <strong>Ethiopia · Yirgacheffe</strong>
+      <span class="notes">Bright and floral. Lemon zest, bergamot, honey. Washed, 1,900m.</span>
+    </li>
+    <li>
+      <strong>Colombia · Huila</strong>
+      <span class="notes">Caramel, milk chocolate, a gentle body. A polite, everyday cup.</span>
+    </li>
+    <li>
+      <strong>House blend · "Maple"</strong>
+      <span class="notes">Cocoa-forward, easy drinker. Pulls a forgiving espresso.</span>
+    </li>
   </ul>
-  <p><a href="/contact/">Get in touch</a> for wholesale or to ask about subscriptions.</p>
+
+  <h2>How it works</h2>
+  <p>
+    Beans go into the roaster Tuesday morning. Orders placed by Friday are ready
+    for Saturday pickup, 8–noon. If you want a bag shipped, email us — we ship
+    Monday for anything ordered in the prior week.
+  </p>
+  <p>
+    If you run a café or restaurant and want us to roast a house bean for you,
+    that's <a href="/wholesale/">wholesale</a>.
+  </p>
 </Base>
