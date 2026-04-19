@@ -267,7 +267,7 @@ const { title, description = SITE.description } = Astro.props;
     }
     .masthead__inner {
       display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
       gap: var(--s-5);
       padding: var(--s-4) var(--s-5);
@@ -275,10 +275,12 @@ const { title, description = SITE.description } = Astro.props;
       margin: 0 auto;
       min-height: var(--masthead);
     }
+    .masthead__inner > .wordmark { justify-self: start; }
+    .masthead__inner > .masthead__cta { justify-self: end; }
 
     .wordmark {
       display: inline-flex;
-      align-items: baseline;
+      align-items: center;
       gap: 0.55rem;
       color: var(--ink);
       background: none;
@@ -310,9 +312,7 @@ const { title, description = SITE.description } = Astro.props;
       padding-left: 0.7rem;
       border-left: 1px solid var(--rule-strong);
       margin-left: 0.3rem;
-      align-self: center;
-      padding-top: 0.1em;
-      padding-bottom: 0.1em;
+      line-height: 1.6;
     }
 
     .nav {
@@ -426,10 +426,8 @@ const { title, description = SITE.description } = Astro.props;
 
     /* ───────── Offering Card ───────── */
     .offering {
-      display: grid;
-      grid-template-columns: 4px 1fr;
-      gap: var(--s-5);
-      padding: var(--s-5) 0 var(--s-5) var(--s-5);
+      display: block;
+      padding: var(--s-5) var(--s-5) var(--s-5) var(--s-6);
       border-bottom: 1px solid var(--rule);
       transition: background var(--dur-med) var(--ease-out);
       position: relative;
@@ -437,7 +435,7 @@ const { title, description = SITE.description } = Astro.props;
     .offering::before {
       content: "";
       position: absolute;
-      left: 0; top: var(--s-5); bottom: var(--s-5);
+      left: var(--s-3); top: var(--s-5); bottom: var(--s-5);
       width: 2px;
       background: var(--copper);
       transition: width var(--dur-med) var(--ease-out), background var(--dur-med) var(--ease-out);
@@ -454,7 +452,7 @@ const { title, description = SITE.description } = Astro.props;
     .offering__head {
       display: flex;
       flex-direction: column;
-      gap: var(--s-1);
+      gap: var(--s-2);
     }
     .offering__origin {
       display: flex;
@@ -462,6 +460,7 @@ const { title, description = SITE.description } = Astro.props;
       gap: var(--s-3);
       flex-wrap: wrap;
     }
+    .offering__origin .offering__status { margin-left: auto; }
     .offering__country {
       font-family: var(--sans);
       font-size: 0.8125rem;
@@ -724,7 +723,7 @@ const { title, description = SITE.description } = Astro.props;
       margin-bottom: var(--s-3);
       font-weight: 600;
     }
-    .footer__col p, .footer__col a, .footer__col li {
+    .footer__col p, .footer__col li, .footer__col a:not(.btn) {
       font-family: var(--sans);
       font-size: 0.9375rem;
       color: var(--bean);
@@ -805,7 +804,7 @@ const { title, description = SITE.description } = Astro.props;
       display: grid;
       grid-template-columns: auto 1fr auto;
       gap: var(--s-6);
-      align-items: center;
+      align-items: baseline;
     }
     .week-strip__label {
       font-family: var(--sans);
