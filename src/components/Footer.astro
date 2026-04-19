@@ -1,0 +1,48 @@
+---
+import Wordmark from './Wordmark.astro';
+import { SITE } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__col">
+      <Wordmark tag="Since 2018" />
+      <p class="footer__blurb">
+        A two-person roastery on Maple Street. Light to medium, traceable,
+        roasted each Tuesday.
+      </p>
+    </div>
+    <div class="footer__col">
+      <h4>Coffee</h4>
+      <ul>
+        <li><a href="/offerings/">This week</a></li>
+        <li><a href="/wholesale/">Wholesale</a></li>
+        <li><a href="/about/">About us</a></li>
+        <li><a href="/visit/">Visit</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Find us</h4>
+      <ul>
+        <li>412 Maple St</li>
+        <li>Springfield</li>
+        <li>Sat · 8am–noon</li>
+        <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>A letter, occasionally</h4>
+      <p class="footer__sub">
+        New lots, roast notes. Roughly monthly. No noise.
+      </p>
+      <a class="btn btn--primary" href={`mailto:${SITE.email}?subject=Subscribe%20to%20the%20letter`}>
+        Email to subscribe
+      </a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© {year} {SITE.name}, LLC</span>
+    <span>Roasted Tuesdays since 2018</span>
+  </div>
+</footer>

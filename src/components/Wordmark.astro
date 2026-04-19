@@ -1,0 +1,12 @@
+---
+interface Props {
+  tag?: string;
+}
+const { tag = 'Springfield · Est. 2018' } = Astro.props;
+---
+<a href="/" class="wordmark" aria-label="Acme Coffee and Roasters — home">
+  <span class="wordmark__name">Acme</span>
+  <span class="wordmark__amp" aria-hidden="true">&amp;</span>
+  <span class="wordmark__name">Roasters</span>
+  {tag && <span class="wordmark__tag">{tag}</span>}
+</a>

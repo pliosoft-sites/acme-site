@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { SITE } from '../data/site';
+---
+
+<Base title="Visit — Acme Coffee & Roasters">
+    <section class="hero">
+        <div class="hero__eyebrow-row">
+            <span class="eyebrow">Visit</span>
+        </div>
+        <h1 class="hero__title">412 Maple Street.</h1>
+        <p class="hero__lede">
+            The roaster runs Tuesday mornings. The shop's open Saturdays, 9 to noon. The door's the green one — look for
+            the bike rack.
+        </p>
+    </section>
+
+    <SectionHead kicker="Hours" title="Saturdays only, and we mean it." />
+    <div class="container">
+        <dl class="facts">
+            <dt>Saturday</dt><dd>8:00 AM – 12:00 PM · retail, pickup, espresso bar.</dd>
+            <dt>Tuesday</dt><dd>Roasting day. No retail. Wholesale pickups by arrangement.</dd>
+            <dt>Other days</dt><dd>We're off.</dd>
+        </dl>
+    </div>
+
+    <SectionHead kicker="Getting here" title="Finding the green door." />
+    <div class="container">
+        <dl class="facts">
+            <dt>Address</dt><dd>412 Maple St, Springfield</dd>
+            <dt>Parking</dt><dd>
+                Two spots behind the shop off Linden alley. Street parking on Maple is metered Mon–Fri only.
+            </dd>
+            <dt>Transit</dt><dd>Bus 14 stops at Maple &amp; 5th, two blocks east. Bike rack at the green door.</dd>
+            <dt>Accessibility</dt><dd>Single step at the entrance; ramp available on request.</dd>
+        </dl>
+    </div>
+
+    <SectionHead kicker="Getting in touch" title="Email is faster than phone." />
+    <div class="container">
+        <dl class="facts">
+            <dt>General</dt><dd><a href={`mailto:${SITE.email}`}>{SITE.email}</a></dd>
+            <dt>Wholesale</dt><dd><a href={`mailto:${SITE.emailWholesale}`}>{SITE.emailWholesale}</a></dd>
+            <dt>Phone</dt><dd>{SITE.phone} · Saturdays only.</dd>
+        </dl>
+    </div>
+
+    <SectionHead kicker="Shipping" title="USPS Priority, Mondays." />
+    <div class="container">
+        <div class="prose">
+            <p>
+                Order via email Monday–Friday. We ship USPS Priority on Mondays. A 250g bag is $18 shipped anywhere in
+                the contiguous US.
+            </p>
+        </div>
+    </div>
+</Base>

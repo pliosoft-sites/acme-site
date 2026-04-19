@@ -1,0 +1,78 @@
+---
+import type { Offering } from '../data/offerings';
+import { SITE } from '../data/site';
+
+interface Props {
+  offering: Offering;
+}
+const { offering: o } = Astro.props;
+const sold = o.status === 'sold-out';
+const soon = o.status === 'soon';
+const orderSubject = encodeURIComponent(`Order: ${o.title} (${o.country})`);
+const notifySubject = encodeURIComponent(`Notify me — ${o.title}`);
+---
+<article
+  class={`offering${sold ? ' is-sold-out' : ''}${soon ? ' is-coming' : ''}`}
+  aria-labelledby={`o-${o.id}`}
+>
+  <div></div>
+  <div class="offering__body">
+    <div class="offering__head">
+      <div class="offering__origin">
+        <span class="offering__country">{o.country}</span>
+        {o.status === 'live' && (
+          <span class="offering__status offering__status--live">Fresh · Roasted Tue</span>
+        )}
+        {sold && (
+          <span class="offering__status">Sold out · returns {o.returns}</span>
+        )}
+        {soon && (
+          <span class="offering__status offering__status--soon">Listing {o.listsOn}</span>
+        )}
+      </div>
+      <h3 id={`o-${o.id}`} class="offering__title">{o.title}</h3>
+      <dl class="offering__meta">
+        <span class="pair"><dt>Farm</dt><dd>{o.farm}</dd></span>
+        <span class="pair"><dt>Region</dt><dd>{o.region}</dd></span>
+        <span class="pair"><dt>Varietal</dt><dd>{o.varietal}</dd></span>
+        <span class="pair"><dt>Process</dt><dd>{o.process}</dd></span>
+        <span class="pair"><dt>Elevation</dt><dd class="tnum">{o.elevation}</dd></span>
+        <span class="pair"><dt>Roast</dt><dd>{o.roast}</dd></span>
+      </dl>
+      <p class="offering__notes">“{o.notes}”</p>
+      <div class="offering__actions">
+        {sold && (
+          <>
+            <span class="btn btn--secondary" aria-disabled="true">Sold out</span>
+            <a class="btn btn--ghost" href={`mailto:${SITE.email}?subject=${notifySubject}`}>
+              Notify me when it returns
+            </a>
+          </>
+        )}
+        {soon && (
+          <>
+            <span class="btn btn--secondary" aria-disabled="true">Listing opens {o.listsOn}</span>
+            <a class="btn btn--ghost" href={`mailto:${SITE.email}?subject=${notifySubject}`}>
+              Add to reminder list
+            </a>
+          </>
+        )}
+        {!sold && !soon && (
+          <>
+            <a class="btn btn--primary" href={`mailto:${SITE.email}?subject=${orderSubject}`}>
+              Buy a bag · ${o.price}
+            </a>
+            <a class="btn btn--ghost" href={`mailto:${SITE.email}?subject=${encodeURIComponent('Weekly subscription')}`}>
+              Subscribe weekly
+            </a>
+          </>
+        )}
+      </div>
+    </div>
+    <div class="offering__price">
+      <span class="amount tnum">${o.price}</span>
+      <span class="weight tnum">{o.weight}</span>
+      <span class="small offering__price-note">Whole bean<br />or ground</span>
+    </div>
+  </div>
+</article>

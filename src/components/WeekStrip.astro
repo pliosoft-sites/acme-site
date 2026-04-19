@@ -1,0 +1,24 @@
+---
+import { OFFERINGS } from '../data/offerings';
+import { NEXT_ROAST } from '../data/site';
+
+const live = OFFERINGS.filter((o) => o.status === 'live').slice(0, 4);
+---
+<section class="week-strip" aria-label="This week at a glance">
+  <div class="week-strip__inner">
+    <div class="week-strip__label">
+      <span class="dot" aria-hidden="true"></span>
+      <span>This week · Roasted {NEXT_ROAST.label}</span>
+    </div>
+    <div class="week-strip__titles">
+      {live.map((o, i) => (
+        <>
+          <strong>{o.title}</strong>
+          <span class="week-strip__country"> — {o.country}</span>
+          {i < live.length - 1 && <span class="sep">&amp;</span>}
+        </>
+      ))}
+    </div>
+    <a class="btn btn--ghost" href="/offerings/">See all offerings</a>
+  </div>
+</section>

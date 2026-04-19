@@ -1,35 +1,83 @@
 ---
 import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { WHOLESALE_TIERS } from '../data/wholesale';
+import { SITE } from '../data/site';
 ---
-<Base title="Wholesale — Acme Coffee Roasters">
-  <p class="eyebrow">For cafés &amp; restaurants</p>
-  <h1>Wholesale</h1>
-  <p class="lede">
-    We roast for two cafés and four restaurants in Springfield. We have room for
-    one or two more. If you run a bar and want a house bean, get in touch.
-  </p>
+<Base title="Wholesale — Acme Coffee & Roasters">
+  <section class="hero">
+    <div class="hero__eyebrow-row">
+      <span class="eyebrow">For cafés &amp; restaurants</span>
+    </div>
+    <h1 class="hero__title">Wholesale.</h1>
+    <p class="hero__lede">
+      We roast for two cafés and four restaurants in Springfield. We have room
+      for one or two more. If you run a bar and want a house bean, get in touch.
+    </p>
+  </section>
 
-  <h2>How it works</h2>
-  <dl class="facts">
-    <dt>Minimum</dt><dd>10 lb / week, standing order.</dd>
-    <dt>Schedule</dt><dd>Roasted Tuesday, delivered Wednesday morning.</dd>
-    <dt>Pricing</dt><dd>$14–$18 / lb depending on the lot. No shipping charges inside Springfield.</dd>
-    <dt>Terms</dt><dd>Net-15. Invoiced monthly.</dd>
-    <dt>Exclusivity</dt><dd>We don't ask for it. Carry whoever you want.</dd>
-  </dl>
+  <SectionHead kicker="Pricing" title="Three tiers, no surprises.">
+    Pricing is per kilogram of roasted coffee. All orders include delivery
+    inside Springfield metro.
+  </SectionHead>
+  <div class="container">
+    <table class="ptable">
+      <thead>
+        <tr>
+          <th scope="col">Volume</th>
+          <th scope="col">Price</th>
+          <th scope="col">Minimum</th>
+          <th scope="col">Delivery</th>
+        </tr>
+      </thead>
+      <tbody>
+        {WHOLESALE_TIERS.map((t) => (
+          <tr>
+            <td>{t.tier}</td>
+            <td class="num">{t.price}</td>
+            <td>{t.minimum}</td>
+            <td>{t.delivery}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 
-  <h2>What we can do for you</h2>
-  <ul>
-    <li>A standing house bean, rotated seasonally.</li>
-    <li>A featured single-origin on a 4–6 week cycle.</li>
-    <li>A custom blend matched to your espresso setup — we'll come cup with you.</li>
-    <li>Basic brew training for new staff, free for accounts.</li>
-  </ul>
+  <SectionHead kicker="How it works" title="Roasted Tuesday. Delivered Wednesday." />
+  <div class="container">
+    <dl class="facts">
+      <dt>Schedule</dt><dd>Roasted Tuesday, delivered Wednesday morning.</dd>
+      <dt>Terms</dt><dd>Net-15. Invoiced monthly.</dd>
+      <dt>Exclusivity</dt><dd>We don't ask for it. Carry whoever you want.</dd>
+      <dt>Samples</dt><dd>Free sample flight on request — three current lots, 100g each.</dd>
+    </dl>
+  </div>
 
-  <h2>Next step</h2>
-  <p>
-    Email <a href="mailto:wholesale@acmecoffee.example">wholesale@acmecoffee.example</a>
-    with what you're pouring now and what you'd want to change. We'll send a
-    sample flight within the week.
-  </p>
+  <SectionHead kicker="What we can do" title="Standing beans, blends, and training." />
+  <div class="container">
+    <div class="prose">
+      <ul>
+        <li>A standing house bean, rotated seasonally.</li>
+        <li>A featured single-origin on a 4–6 week cycle.</li>
+        <li>A custom blend matched to your espresso setup — we'll come cup with you.</li>
+        <li>Basic brew training for new staff, free for accounts.</li>
+      </ul>
+    </div>
+  </div>
+
+  <SectionHead kicker="Next step" title="Tell us what you're pouring." />
+  <div class="container">
+    <div class="prose">
+      <p>
+        Email <a href={`mailto:${SITE.emailWholesale}`}>{SITE.emailWholesale}</a>
+        with what you're pouring now and what you'd want to change. We'll send
+        a sample flight within the week.
+      </p>
+      <p>
+        <a class="btn btn--primary" href={`mailto:${SITE.emailWholesale}?subject=Wholesale%20inquiry`}>
+          Start a conversation
+        </a>
+      </p>
+    </div>
+  </div>
 </Base>

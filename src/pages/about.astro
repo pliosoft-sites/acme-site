@@ -1,39 +1,60 @@
 ---
 import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
 ---
-<Base title="About — Acme Coffee Roasters">
-  <p class="eyebrow">About</p>
-  <h1>Two roasters, one drum.</h1>
-  <p class="lede">
-    Acme started in 2018 in a converted bakery garage. The drum roaster came
-    from an auction in Des Moines. The name came from a kid's lunchbox.
-  </p>
+<Base title="About — Acme Coffee & Roasters">
+  <section class="hero">
+    <div class="hero__eyebrow-row">
+      <span class="eyebrow">About</span>
+    </div>
+    <h1 class="hero__title">Two roasters, <em>one</em> drum.</h1>
+    <p class="hero__lede">
+      Acme started in 2018 in a converted bakery garage. The drum roaster came
+      from an auction in Des Moines. The name came from a kid's lunchbox.
+    </p>
+  </section>
 
-  <h2>What we believe about roast</h2>
-  <p>
-    We don't roast past medium. Light-to-medium holds more of what the farm did
-    — the acidity, the fruit, the character you paid for. If you want a French
-    roast, there are plenty of shops in town that'll do that better than we
-    will.
-  </p>
-  <p>
-    Every lot gets cupped before we release it. If a bag isn't what we thought
-    it'd be, it goes back or gets blended. We'd rather short a week than send
-    something we don't stand behind.
-  </p>
+  <SectionHead kicker="Philosophy" title="What we believe about roast." />
+  <div class="container">
+    <div class="prose">
+      <p class="dropcap">
+        We don't roast past medium. Light-to-medium holds more of what the farm
+        did — the acidity, the fruit, the character you paid for. If you want a
+        French roast, there are plenty of shops in town that'll do that better
+        than we will.
+      </p>
 
-  <h2>Who's here</h2>
-  <p>
-    <strong>Dana</strong> runs the roaster and the books.
-    <strong>Mike</strong> runs the bar and the wholesale accounts.
-    Saturdays you'll usually see both of us.
-  </p>
+      <blockquote class="pullquote">
+        We'd rather short a week than send something we don't stand behind.
+      </blockquote>
 
-  <h2>Where we buy from</h2>
-  <p>
-    We buy green coffee through two importers — one in Oakland, one in
-    Brooklyn. Whenever we can trace a lot back to a named farm or cooperative,
-    we put that on the bag. Some weeks that's most of what we have; some weeks
-    it's none of it. We'll tell you when it's which.
-  </p>
+      <p>
+        Every lot gets cupped before we release it. If a bag isn't what we
+        thought it'd be, it goes back or gets blended.
+      </p>
+    </div>
+  </div>
+
+  <SectionHead kicker="The two of us" title="Who's here." />
+  <div class="container">
+    <div class="prose">
+      <p>
+        <strong>Dana</strong> runs the roaster and the books.
+        <strong>Mike</strong> runs the bar and the wholesale accounts.
+        Saturdays you'll usually see both of us.
+      </p>
+    </div>
+  </div>
+
+  <SectionHead kicker="Sourcing" title="Where we buy from." />
+  <div class="container">
+    <div class="prose">
+      <p>
+        We buy green coffee through two importers — one in Oakland, one in
+        Brooklyn. Whenever we can trace a lot back to a named farm or
+        cooperative, we put that on the bag. Some weeks that's most of what we
+        have; some weeks it's none of it. We'll tell you when it's which.
+      </p>
+    </div>
+  </div>
 </Base>

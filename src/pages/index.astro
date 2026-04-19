@@ -1,38 +1,49 @@
 ---
 import Base from '../layouts/Base.astro';
+import WeekStrip from '../components/WeekStrip.astro';
+import SectionHead from '../components/SectionHead.astro';
+import OfferingCard from '../components/OfferingCard.astro';
+import { OFFERINGS } from '../data/offerings';
+
+const featured = OFFERINGS.filter((o) => o.status === 'live').slice(0, 3);
 ---
-<Base title="Acme Coffee Roasters — small-batch coffee, Springfield">
-  <p class="eyebrow">Roasted Tuesdays · Picked up Saturdays</p>
-  <h1>Coffee, roasted Tuesdays.</h1>
-  <p class="lede">
-    We're a two-person roastery on Maple Street. Single-origin beans, two house
-    blends, and a stubborn refusal to roast anything past medium.
-  </p>
+<Base title="Acme Coffee & Roasters — small-batch coffee, Springfield">
+  <section class="hero">
+    <div class="hero__eyebrow-row">
+      <span class="eyebrow">Roasted Tuesdays · Picked up Saturdays</span>
+    </div>
+    <h1 class="hero__title">Coffee, roasted <em>Tuesdays</em>.</h1>
+    <p class="hero__lede">
+      A two-person roastery on Maple Street. Single-origin beans, two house
+      blends, and a stubborn refusal to roast anything past medium.
+    </p>
+  </section>
 
-  <h2>On the bar this week</h2>
-  <ul class="card-list">
-    <li>
-      <strong>Ethiopia · Yirgacheffe</strong>
-      <span class="notes">Bright and floral. Lemon zest, bergamot, honey. Washed, 1,900m.</span>
-    </li>
-    <li>
-      <strong>Colombia · Huila</strong>
-      <span class="notes">Caramel, milk chocolate, a gentle body. A polite, everyday cup.</span>
-    </li>
-    <li>
-      <strong>House blend · "Maple"</strong>
-      <span class="notes">Cocoa-forward, easy drinker. Pulls a forgiving espresso.</span>
-    </li>
-  </ul>
+  <WeekStrip />
 
-  <h2>How it works</h2>
-  <p>
-    Beans go into the roaster Tuesday morning. Orders placed by Friday are ready
-    for Saturday pickup, 8–noon. If you want a bag shipped, email us — we ship
-    Monday for anything ordered in the prior week.
-  </p>
-  <p>
-    If you run a café or restaurant and want us to roast a house bean for you,
-    that's <a href="/wholesale/">wholesale</a>.
-  </p>
+  <SectionHead kicker="On the bar this week" title="A short list, cupped twice.">
+    Three of the six lots we have on right now. Head to
+    <a href="/offerings/">all offerings</a> to see the rest.
+  </SectionHead>
+
+  <div class="container">
+    {featured.map((o) => <OfferingCard offering={o} />)}
+  </div>
+
+  <SectionHead kicker="How it works" title="Tuesdays roast. Saturdays pour.">
+    Orders placed by Friday are ready for Saturday pickup, 8 to noon.
+  </SectionHead>
+
+  <div class="container">
+    <div class="prose">
+      <p>
+        Beans go into the roaster Tuesday morning. If you want a bag shipped,
+        email us — we ship Monday for anything ordered in the prior week.
+      </p>
+      <p>
+        If you run a café or restaurant and want us to roast a house bean for
+        you, that's <a href="/wholesale/">wholesale</a>.
+      </p>
+    </div>
+  </div>
 </Base>

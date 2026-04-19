@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import OfferingCard from '../../components/OfferingCard.astro';
+import { OFFERINGS } from '../../data/offerings';
+import { NEXT_ROAST } from '../../data/site';
+
+const live = OFFERINGS.filter((o) => o.status === 'live');
+const soon = OFFERINGS.filter((o) => o.status === 'soon');
+const sold = OFFERINGS.filter((o) => o.status === 'sold-out');
+---
+<Base title="All offerings — Acme Coffee & Roasters">
+  <section class="hero hero--operational">
+    <div class="hero__eyebrow-row">
+      <span class="eyebrow">Week of {NEXT_ROAST.label}</span>
+    </div>
+    <h1 class="hero__title">All offerings</h1>
+    <p class="hero__lede">
+      Everything we're roasting this week, plus what's coming and what just
+      went out the door. Light to medium only — always.
+    </p>
+  </section>
+
+  {live.length > 0 && (
+    <>
+      <SectionHead kicker="On the bar" title="Roasting Tuesday.">
+        Ready Saturday at 8am. Order by Friday if you want us to set one aside.
+      </SectionHead>
+      <div class="container">
+        {live.map((o) => <OfferingCard offering={o} />)}
+      </div>
+    </>
+  )}
+
+  {soon.length > 0 && (
+    <>
+      <SectionHead kicker="Coming up" title="Cupped, not yet listed.">
+        We're finishing the cupping notes. Listing opens on the date shown.
+      </SectionHead>
+      <div class="container">
+        {soon.map((o) => <OfferingCard offering={o} />)}
+      </div>
+    </>
+  )}
+
+  {sold.length > 0 && (
+    <>
+      <SectionHead kicker="Just went" title="Sold out for now.">
+        We usually get one more pass at a lot before the season turns. Ask us
+        to notify you when it comes back around.
+      </SectionHead>
+      <div class="container">
+        {sold.map((o) => <OfferingCard offering={o} />)}
+      </div>
+    </>
+  )}
+</Base>
