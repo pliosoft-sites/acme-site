@@ -27,6 +27,7 @@ const { title, description = SITE.description } = Astro.props;
   />
   <style is:global>
     :root {
+      /* ── Colour tokens (light) ── */
       --bean: #2a1a12;
       --ink: #1a120e;
       --crema: #f4ece0;
@@ -87,8 +88,43 @@ const { title, description = SITE.description } = Astro.props;
       --masthead: 64px;
     }
 
+    /* ── Dark mode: re-map colour tokens only ── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        /* Backgrounds: deep roast browns, not pure black */
+        --crema: #1c1410;
+        --paper: #231a14;
+
+        /* Text: warm off-white, softer than pure white */
+        --ink: #f0e6d6;
+        --bean: #d4c4b0;
+
+        /* Copper stays warm but lifted for contrast on dark */
+        --copper: #c97a48;
+        --copper-hover: #b86a38;
+
+        /* Pine green stays recognisable, slightly lighter */
+        --pine: #4a7a5e;
+
+        /* Divider rules: white-based with low opacity */
+        --rule: rgba(240, 230, 214, 0.10);
+        --rule-strong: rgba(240, 230, 214, 0.20);
+
+        /* Muted text: warm mid-grey */
+        --muted: #9a8a7c;
+
+        /* Focus ring: lighter copper */
+        --focus: #c97a48;
+      }
+    }
+
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
+
+    /* Tell the browser to use both schemes so native UI (scrollbars,
+       form controls) adapts automatically */
+    html { color-scheme: light dark; }
+
     body {
       background: var(--crema);
       color: var(--ink);
