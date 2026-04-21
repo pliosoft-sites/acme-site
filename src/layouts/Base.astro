@@ -87,6 +87,36 @@ const { title, description = SITE.description } = Astro.props;
       --masthead: 64px;
     }
 
+    /* ───────── Dark mode ───────── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        /* Backgrounds: deep espresso → rich dark brown */
+        --crema:       #1c1410;
+        --paper:       #231a14;
+
+        /* Text: warm off-white → light crema */
+        --ink:         #f0e8dc;
+        --bean:        #d4c4b0;
+
+        /* Copper stays copper — just slightly brightened for contrast */
+        --copper:      #c4703a;
+        --copper-hover:#d98048;
+
+        /* Muted text: warmer mid-tone */
+        --muted:       #8a7668;
+
+        /* Pine stays recognisable */
+        --pine:        #4a7a5a;
+
+        /* Rules: light-on-dark at the same visual weight */
+        --rule:        rgba(240, 232, 220, 0.10);
+        --rule-strong: rgba(240, 232, 220, 0.20);
+
+        /* Focus ring follows copper */
+        --focus: #c4703a;
+      }
+    }
+
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
