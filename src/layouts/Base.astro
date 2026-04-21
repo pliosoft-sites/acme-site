@@ -27,6 +27,7 @@ const { title, description = SITE.description } = Astro.props;
   />
   <style is:global>
     :root {
+      /* ── Colour tokens (light) ── */
       --bean: #2a1a12;
       --ink: #1a120e;
       --crema: #f4ece0;
@@ -119,6 +120,11 @@ const { title, description = SITE.description } = Astro.props;
 
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
+
+    /* Tell the browser to use both schemes so native UI (scrollbars,
+       form controls) adapts automatically */
+    html { color-scheme: light dark; }
+
     body {
       background: var(--crema);
       color: var(--ink);
