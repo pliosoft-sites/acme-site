@@ -14,7 +14,7 @@ export const WHOLESALE_TIERS: WholesaleTier[] = [
   },
   {
     tier: '10–25 kg / week',
-    price: '$19 / kg',
+    price: '$18.50 / kg',
     minimum: '10 kg per order',
     delivery: 'Tue / Fri, Springfield metro',
   },
