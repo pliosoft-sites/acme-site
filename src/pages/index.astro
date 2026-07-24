@@ -4,8 +4,11 @@ import WeekStrip from '../components/WeekStrip.astro';
 import SectionHead from '../components/SectionHead.astro';
 import OfferingCard from '../components/OfferingCard.astro';
 import { OFFERINGS } from '../data/offerings';
+import { PASTRIES } from '../data/pastries';
+import { SITE } from '../data/site';
 
 const featured = OFFERINGS.filter((o) => o.status === 'live').slice(0, 3);
+const pastrySubject = encodeURIComponent('Pastry order — made to order');
 ---
 <Base title="Acme Coffee & Roasters — small-batch coffee, Springfield">
   <section class="hero">
@@ -47,6 +50,41 @@ const featured = OFFERINGS.filter((o) => o.status === 'live').slice(0, 3);
     </div>
   </div>
 
+  <SectionHead kicker="Made to order" title="Pastries, baked fresh.">
+    Everything is made to order and available for Saturday pickup alongside your coffee.
+    Email us by Friday to place an order.
+  </SectionHead>
+
+  <div class="container">
+    <div class="pastry-grid">
+      {PASTRIES.map((p) => (
+        <article class={`pastry-card${p.status === 'seasonal' ? ' pastry-card--seasonal' : ''}`}>
+          <div class="pastry-card__head">
+            <h3 class="pastry-card__title">{p.title}</h3>
+            {p.status === 'seasonal' && (
+              <span class="pastry-card__badge">{p.season}</span>
+            )}
+          </div>
+          <p class="pastry-card__desc">{p.description}</p>
+          <p class="pastry-card__note">"{p.note}"</p>
+          <div class="pastry-card__foot">
+            <span class="pastry-card__price">${p.price} <span class="pastry-card__unit">/ {p.unit}</span></span>
+            <a
+              class="btn btn--ghost"
+              href={`mailto:${SITE.email}?subject=${encodeURIComponent(`Pastry order — ${p.title}`)}`}
+            >
+              Order this
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="pastry-note">
+      All pastries are made to order — place your order by Friday for Saturday pickup.
+      Want something special? <a href={`mailto:${SITE.email}?subject=${pastrySubject}`}>Drop us a line</a>.
+    </p>
+  </div>
+
   <SectionHead kicker="Shop dog" title="Meet Fluffy.">
     The third member of the team, present for most roasts.
   </SectionHead>
@@ -64,3 +102,127 @@ const featured = OFFERINGS.filter((o) => o.status === 'live').slice(0, 3);
     </div>
   </div>
 </Base>
+
+<style>
+  .pastry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .pastry-card {
+    padding: var(--s-6) var(--s-5);
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    position: relative;
+  }
+
+  .pastry-card::before {
+    content: "";
+    position: absolute;
+    top: var(--s-5);
+    bottom: var(--s-5);
+    left: 0;
+    width: 2px;
+    background: var(--copper);
+    transition: width var(--dur-med) var(--ease-out);
+  }
+  .pastry-card:hover::before { width: 4px; }
+
+  .pastry-card--seasonal::before { background: var(--pine); }
+
+  .pastry-card__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  .pastry-card__title {
+    font-family: var(--serif);
+    font-size: var(--fs-h3);
+    font-variation-settings: "opsz" 48, "SOFT" 50;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    font-weight: 420;
+    margin: 0;
+  }
+
+  .pastry-card__badge {
+    font-family: var(--sans);
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--pine);
+    white-space: nowrap;
+  }
+
+  .pastry-card__desc {
+    font-family: var(--sans);
+    font-size: var(--fs-ui);
+    color: var(--bean);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .pastry-card__note {
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 14, "SOFT" 80;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.45;
+    margin: 0;
+    font-weight: 380;
+  }
+
+  .pastry-card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3);
+    margin-top: auto;
+    padding-top: var(--s-3);
+  }
+
+  .pastry-card__price {
+    font-family: var(--serif);
+    font-size: 1.375rem;
+    font-variation-settings: "opsz" 48, "SOFT" 40;
+    font-weight: 420;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .pastry-card__unit {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .pastry-note {
+    margin-top: var(--s-5);
+    font-family: var(--sans);
+    font-size: var(--fs-small);
+    color: var(--muted);
+    max-width: var(--prose);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 860px) {
+    .pastry-grid {
+      grid-template-columns: 1fr;
+    }
+    .pastry-card {
+      border-right: none;
+    }
+  }
+</style>
