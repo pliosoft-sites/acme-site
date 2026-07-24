@@ -4,6 +4,7 @@ import WeekStrip from '../components/WeekStrip.astro';
 import SectionHead from '../components/SectionHead.astro';
 import OfferingCard from '../components/OfferingCard.astro';
 import { OFFERINGS } from '../data/offerings';
+import { PASTRIES } from '../data/pastries';
 
 const featured = OFFERINGS.filter((o) => o.status === 'live').slice(0, 3);
 ---
@@ -47,6 +48,29 @@ const featured = OFFERINGS.filter((o) => o.status === 'live').slice(0, 3);
     </div>
   </div>
 
+  <SectionHead kicker="Made to order" title="Pastries, baked for Saturday.">
+    Place your order by Friday. Everything is made to order — nothing sits in a case.
+  </SectionHead>
+
+  <div class="container">
+    <dl class="facts pastries-list">
+      {PASTRIES.map((p) => (
+        <>
+          <dt>{p.name}</dt>
+          <dd>
+            {p.description}
+            {p.note && <span class="pastry-note">{p.note}</span>}
+          </dd>
+        </>
+      ))}
+      <dt>How to order</dt>
+      <dd>
+        Email <a href="mailto:hello@acmecoffee.example">hello@acmecoffee.example</a> by
+        Friday with what you'd like. We'll confirm and have everything ready at Saturday pickup.
+      </dd>
+    </dl>
+  </div>
+
   <SectionHead kicker="Shop dog" title="Meet Fluffy.">
     The third member of the team, present for most roasts.
   </SectionHead>
@@ -64,3 +88,14 @@ const featured = OFFERINGS.filter((o) => o.status === 'live').slice(0, 3);
     </div>
   </div>
 </Base>
+
+<style>
+  .pastry-note {
+    display: block;
+    margin-top: 0.25rem;
+    font-family: var(--sans);
+    font-size: var(--fs-small);
+    color: var(--muted);
+    font-style: normal;
+  }
+</style>
